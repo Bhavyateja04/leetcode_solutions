@@ -10,7 +10,7 @@ public:
                 bool rightEmpty = (i == m - 1 || flowerbed[i + 1] == 0);
 
                 if (leftEmpty && rightEmpty) {
-                    flowerbed[i] = 1; // plant
+                    flowerbed[i] = 1; 
                     count++;
                     if (count >= n) return true;
                 }

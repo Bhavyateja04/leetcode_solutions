@@ -12,8 +12,6 @@ public:
                 temp /= 10;
             }
 
-            // reverse(digits.begin(), digits.end());
-
             for (int i = 1; i < digits.size() - 1; i++) {
                 if ((digits[i] > digits[i - 1] && digits[i] > digits[i + 1]) ||
                     (digits[i] < digits[i - 1] && digits[i] < digits[i + 1])) {

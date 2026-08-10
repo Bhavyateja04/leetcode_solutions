@@ -1,25 +1,40 @@
 class Solution {
 public:
- void backtrack(int open, int close, int n, string curr, vector<string>& result) {
-        // If the current string is complete
-        if (curr.length() == 2 * n) {
-            result.push_back(curr);
+    void solve(string op, int open, int close, vector<string> &ans){
+        if(open == 0 && close == 0){
+            ans.push_back(op);
             return;
         }
-
-        // Add '(' if we can
-        if (open < n) {
-            backtrack(open + 1, close, n, curr + "(", result);
+        if(open == close){
+            string op1 = op;
+            op1.push_back('(');
+            solve(op1, open-1, close, ans);
         }
-
-        // Add ')' if it keeps the string valid
-        if (close < open) {
-            backtrack(open, close + 1, n, curr + ")", result);
+        else if(open == 0){
+            string op1 = op;
+            op1.push_back(')');
+            solve(op1, open, close-1, ans);
+        }
+        else if(close == 0){
+            string op1 = op;
+            op1.push_back('(');
+            solve(op1, open-1, close, ans);
+        }
+        else{
+            string op1 = op;
+            string op2 = op;
+            op1.push_back('(');
+            op2.push_back(')');
+            solve(op1, open-1, close, ans);
+            solve(op2, open, close-1, ans);
         }
     }
     vector<string> generateParenthesis(int n) {
-       vector<string> result;
-        backtrack(0, 0, n, "", result);
-        return result; 
+        int open = n;
+        int close = n;
+        vector<string> ans;
+        string op = "";
+        solve(op, open, close, ans);
+        return ans;
     }
 };

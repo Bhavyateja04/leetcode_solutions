@@ -10,14 +10,13 @@ public:
             long long hours = 0;
 
             for (int pile : piles) {
-                // ceil(pile / mid)
                 hours += (pile + mid - 1) / mid;
             }
 
             if (hours <= h) {
-                high = mid - 1; // try smaller speed
+                high = mid - 1;
             } else {
-                low = mid + 1; // increase speed
+                low = mid + 1; 
             }
         }
 
